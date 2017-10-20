@@ -69,6 +69,7 @@ public class StudentController {
             produces = {MediaType.IMAGE_GIF_VALUE,MediaType.IMAGE_JPEG_VALUE,MediaType.IMAGE_PNG_VALUE}
     )
     public @ResponseBody ResponseEntity<?> getStudentImage(@PathVariable("fileName")String fileName) throws IOException {
+//        File file = Paths.get("C:/images/lab07/a.jpg").toFile();
         File file = Paths.get(imageServerDir+fileName).toFile();
         if(file.exists()){
             InputStream in = new FileInputStream(file);
