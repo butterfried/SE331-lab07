@@ -3,6 +3,7 @@ package camt.cbsd.lab05.controller;
 import camt.cbsd.lab05.entity.Student;
 import camt.cbsd.lab05.service.StudentService;
 import camt.cbsd.lab05.service.StudentServiceImpl;
+import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.ConfigurationProperties;
@@ -21,6 +22,7 @@ import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.time.LocalTime;
 import java.util.List;
 
 @Profile("firstDataSource")
@@ -86,7 +88,10 @@ public class StudentController {
         }
         try{
             byte[] bytes = file.getBytes();
-            Path path = Paths.get(imageServerDir+file.getOriginalFilename());
+            String oldFilename = file.getOriginalFilename();
+            String ext = FilenameUtils.getExtension(oldFilename);
+            String newFilename = Integer.toString(LocalTime.now().hashCode(),16)+Integer.toString(oldFilename.hashCode(),16)+"."+ext;
+            Path path = Paths.get(imageServerDir+newFilename);
             Files.write(path,bytes);
             return ResponseEntity.ok(imageServerDir+file.getOriginalFilename());
         } catch (IOException e) {
