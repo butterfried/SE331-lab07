@@ -88,7 +88,7 @@ public class StudentController {
             byte[] bytes = file.getBytes();
             Path path = Paths.get(imageServerDir+file.getOriginalFilename());
             Files.write(path,bytes);
-            return ResponseEntity.ok(file.getOriginalFilename());
+            return ResponseEntity.ok(imageServerDir+file.getOriginalFilename());
         } catch (IOException e) {
             e.printStackTrace();
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
