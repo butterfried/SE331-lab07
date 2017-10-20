@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Student {
+
     long id;
     String studentId;
     String name;
@@ -55,11 +56,11 @@ public class Student {
         this.studentId = studentId;
         this.name = name;
         this.surname = surname;
-
         this.gpa = gpa;
         this.image = image;
         this.feature = feature;
         this.penAmount = penAmount;
         this.description = description;
     }
+    public Student(){}
 }
